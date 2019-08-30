@@ -1,0 +1,701 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{2019\_2\_mcpp\_taller\_4}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Taller 4}\label{taller-4}
+
+Métodos Computacionales para Políticas Públicas - URosario
+
+\textbf{Entrega: viernes 30-ago-2019 11:59 PM}
+
+    \textbf{Julián Santiago Ramírez} julians.ramirez@urosario.edu.co
+
+    \subsection{Instrucciones:}\label{instrucciones}
+
+\begin{itemize}
+\tightlist
+\item
+  Guarde una copia de este \emph{Jupyter Notebook} en su computador,
+  idealmente en una carpeta destinada al material del curso.
+\item
+  Modifique el nombre del archivo del \emph{notebook}, agregando al
+  final un guión inferior y su nombre y apellido, separados estos
+  últimos por otro guión inferior. Por ejemplo, mi \emph{notebook} se
+  llamaría: mcpp\_taller4\_santiago\_matallana
+\item
+  Marque el \emph{notebook} con su nombre y e-mail en el bloque verde
+  arriba. Reemplace el texto "{[}Su nombre acá{]}" con su nombre y
+  apellido. Similar para su e-mail.
+\item
+  Desarrolle la totalidad del taller sobre este \emph{notebook},
+  insertando las celdas que sea necesario debajo de cada pregunta. Haga
+  buen uso de las celdas para código y de las celdas tipo
+  \emph{markdown} según el caso.
+\item
+  Recuerde salvar periódicamente sus avances.
+\item
+  Cuando termine el taller:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Descárguelo en PDF.
+  \item
+    Suba los dos archivos (.pdf y .ipynb) a su repositorio en GitHub
+    antes de la fecha y hora límites.
+  \end{enumerate}
+\end{itemize}
+
+(Todos los ejercicios tienen el mismo valor.)
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{Zelle, Exercises 6.8 (p.
+159):}\label{zelle-exercises-6.8-p.-159}
+
+\begin{itemize}
+\tightlist
+\item
+  True/False: 1-10
+\item
+  Multiple choice: 2, 3, 6, 7, 10
+\item
+  Programming Exercises: 1, 3, 4, 11, 12, 13
+\end{itemize}
+
+    \subsection{True/False 1-10}\label{truefalse-1-10}
+
+    \paragraph{1) Programmers rarely define their own
+functions.}\label{programmers-rarely-define-their-own-functions.}
+
+Rta: F
+
+    \paragraph{2) A function may only be called at one place in a
+program.}\label{a-function-may-only-be-called-at-one-place-in-a-program.}
+
+Rta: F
+
+    \paragraph{3) Information can be passed into a function through
+parameters}\label{information-can-be-passed-into-a-function-through-parameters}
+
+Rta: T
+
+    \paragraph{4) Every Python function returns some
+value.}\label{every-python-function-returns-some-value.}
+
+Rta: T. Aclaración: El libro menciona que en caso de que dentro de la
+función no se defina un return o algun print, la función retornaría
+"None". Este "none" no es visto por el usuario, ni es almacenado en
+alguna variable.
+
+    \paragraph{5) In Python, some parameters are passed by
+reference.}\label{in-python-some-parameters-are-passed-by-reference.}
+
+Rta: F
+
+    \paragraph{6) In Python, a function can return only one
+value}\label{in-python-a-function-can-return-only-one-value}
+
+Rta: F
+
+    \paragraph{7) Python functions can never modify a
+parameter.}\label{python-functions-can-never-modify-a-parameter.}
+
+Rta: T
+
+    \paragraph{8) One reason to use functions is to reduce code
+duplication.}\label{one-reason-to-use-functions-is-to-reduce-code-duplication.}
+
+Rta: T
+
+    \paragraph{9.)Variables defined in a function are local to that
+function}\label{variables-defined-in-a-function-are-local-to-that-function}
+
+Rta: T
+
+    \paragraph{10) It's a bad idea to define new functions if it makes a
+program
+longer.}\label{its-a-bad-idea-to-define-new-functions-if-it-makes-a-program-longer.}
+
+Rta: F
+
+    \subsection{Multiple choice}\label{multiple-choice}
+
+    \paragraph{2. A Python function definition begins
+with}\label{a-python-function-definition-begins-with}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  def
+\item
+  define
+\item
+  function
+\item
+  defun
+\end{enumerate}
+
+Rta: a
+
+    \paragraph{3. A function can send output back to the program with
+a(n)}\label{a-function-can-send-output-back-to-the-program-with-an}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  return b) print c) assignment d) SASE
+\end{enumerate}
+
+Rta: a
+
+    \paragraph{6. In Python, actual parameters are passed to
+functions}\label{in-python-actual-parameters-are-passed-to-functions}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  by value b) by reference c) at random d) by networking
+\end{enumerate}
+
+Rta: a
+
+    \paragraph{7. Which of the following is not a reason to use
+functions?}\label{which-of-the-following-is-not-a-reason-to-use-functions}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  to reduce code duplication
+\item
+  to make a program more modular
+\item
+  to make a program more self-documenting
+\item
+  to demonstrate intellectual superiority
+\end{enumerate}
+
+Rta: d
+
+    \paragraph{10. A function can modify the value of an actual parameter
+only if
+it's}\label{a-function-can-modify-the-value-of-an-actual-parameter-only-if-its}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  mutable b) a list c) passed by reference d) a variable
+\end{enumerate}
+
+Rta: a
+
+    \subsection{Programming exercises}\label{programming-exercises}
+
+    \subsubsection{1. Write a program to print the lyrics of the song ``Old
+MacDonald.'' Your program should print the lyrics for five different
+animals, similar to the example verse
+below.}\label{write-a-program-to-print-the-lyrics-of-the-song-old-macdonald.-your-program-should-print-the-lyrics-for-five-different-animals-similar-to-the-example-verse-below.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{principal}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Old McDonald had a farm, Ee\PYZhy{}igh, Ee\PYZhy{}igh, Oh!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{parte\PYZus{}animal}\PY{p}{(}\PY{n}{animal}\PY{p}{,}\PY{n}{sonido}\PY{p}{)}\PY{p}{:}
+            \PY{n}{palabra\PYZus{}1}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{And on that farm he had a }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n}{animal}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,Ee\PYZhy{}igh, Ee\PYZhy{}igh, Oh!}\PY{l+s+s2}{\PYZdq{}} 
+            \PY{n}{palabra\PYZus{}2}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{With a }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n}{sonido}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{sonido}\PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ here and a }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n}{sonido}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{sonido}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ there}\PY{l+s+s2}{\PYZdq{}}
+            \PY{n}{palabra\PYZus{}3}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Here a }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n}{sonido}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ there a }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n}{sonido}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, everywhere a }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{sonido}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{sonido}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{palabra\PYZus{}1}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{palabra\PYZus{}2}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{palabra\PYZus{}3}\PY{p}{)}
+            
+        \PY{k}{def} \PY{n+nf}{total}\PY{p}{(}\PY{n}{animales}\PY{p}{)}\PY{p}{:}
+            \PY{n}{principal}\PY{p}{(}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{animales}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{parte\PYZus{}animal}\PY{p}{(}\PY{n}{animales}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{animales}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                \PY{n}{principal}\PY{p}{(}\PY{p}{)}
+            
+        \PY{n}{lista\PYZus{}a}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{caballo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{brrrrr}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{vaca}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{moo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{perro}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{wof}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gato}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{miau}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pollo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{pio}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}  
+        \PY{n}{total}\PY{p}{(}\PY{n}{lista\PYZus{}a}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Old McDonald had a farm, Ee-igh, Ee-igh, Oh!
+And on that farm he had a caballo,Ee-igh, Ee-igh, Oh!
+With a brrrrr,brrrrr here and a brrrrr,brrrrr there
+Here a brrrrr, there a brrrrr, everywhere a brrrrr,brrrrr
+Old McDonald had a farm, Ee-igh, Ee-igh, Oh!
+And on that farm he had a vaca,Ee-igh, Ee-igh, Oh!
+With a moo,moo here and a moo,moo there
+Here a moo, there a moo, everywhere a moo,moo
+Old McDonald had a farm, Ee-igh, Ee-igh, Oh!
+And on that farm he had a perro,Ee-igh, Ee-igh, Oh!
+With a wof,wof here and a wof,wof there
+Here a wof, there a wof, everywhere a wof,wof
+Old McDonald had a farm, Ee-igh, Ee-igh, Oh!
+And on that farm he had a gato,Ee-igh, Ee-igh, Oh!
+With a miau,miau here and a miau,miau there
+Here a miau, there a miau, everywhere a miau,miau
+Old McDonald had a farm, Ee-igh, Ee-igh, Oh!
+And on that farm he had a pollo,Ee-igh, Ee-igh, Oh!
+With a pio,pio here and a pio,pio there
+Here a pio, there a pio, everywhere a pio,pio
+Old McDonald had a farm, Ee-igh, Ee-igh, Oh!
+
+    \end{Verbatim}
+
+    \subsubsection{3. Write definitions for these functions:
+sphereArea(radius) Returns the surface area of a sphere having the given
+radius. sphereVolume(radius) Returns the volume of a sphere having the
+given radius. Use your functions to solve Programming Exercise 1 from
+Chapter
+3.}\label{write-definitions-for-these-functions-spherearearadius-returns-the-surface-area-of-a-sphere-having-the-given-radius.-spherevolumeradius-returns-the-volume-of-a-sphere-having-the-given-radius.-use-your-functions-to-solve-programming-exercise-1-from-chapter-3.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} Variabl global}
+         \PY{n}{pi}\PY{o}{=}\PY{l+m+mf}{3.14159265359}
+         
+         \PY{k}{def} \PY{n+nf}{sphereArea}\PY{p}{(}\PY{n}{radius}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Formula del área}
+             \PY{n}{area} \PY{o}{=} \PY{l+m+mi}{4}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{n}{radius}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} 
+             \PY{k}{return} \PY{n}{area}
+         
+         \PY{k}{def} \PY{n+nf}{sphereVolume}\PY{p}{(}\PY{n}{radius}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{} Formula del volumen}
+             \PY{n}{volumen} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{4}\PY{o}{/}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{pi}\PY{o}{*}\PY{n}{radius}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)} 
+             \PY{k}{return} \PY{n}{volumen}
+         
+         \PY{k}{def} \PY{n+nf}{principal}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Calculamos el área y volumen de una esfera, con un radio que da el usuario}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{radio} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Radio de la esfera}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+             \PY{n}{vol} \PY{o}{=} \PY{n}{sphereVolume}\PY{p}{(}\PY{n}{radio}\PY{p}{)}
+             \PY{n}{area} \PY{o}{=} \PY{n}{sphereArea}\PY{p}{(}\PY{n}{radio}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Volumen de la esfera: }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{vol}\PY{p}{)} \PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Area de la esfera :}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{area}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{principal}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Calculamos el área y volumen de una esfera, con un radio que da el usuario
+Radio de la esfera2
+Volumen de la esfera: 33.510321638293334
+Area de la esfera :50.26548245744
+
+    \end{Verbatim}
+
+    \subsubsection{4. Write definitions for the following two functions:
+sumN(n) returns the sum of the first n natural numbers. sumNCubes(n)
+returns the sum of the cubes of the first n natural
+numbers.}\label{write-definitions-for-the-following-two-functions-sumnn-returns-the-sum-of-the-first-n-natural-numbers.-sumncubesn-returns-the-sum-of-the-cubes-of-the-first-n-natural-numbers.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{def} \PY{n+nf}{sumN}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{n}{final}\PY{o}{=}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{1}
+             \PY{n}{tot}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{final}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{tot}
+         
+         \PY{k}{def} \PY{n+nf}{sumNCubes}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{n}{final}\PY{o}{=}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{1}
+             \PY{n}{lista}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{final}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{lista}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}
+             \PY{n}{tot}\PY{o}{=}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lista de cubos:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{lista}\PY{p}{)}
+             \PY{k}{return} \PY{n}{tot}
+         
+         \PY{k}{def} \PY{n+nf}{prin}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{n}{su} \PY{o}{=} \PY{n}{sumN}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+             \PY{n}{cubos} \PY{o}{=} \PY{n}{sumNCubes}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La suma de todos los numeros hasta }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ es:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{su}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La suma de todos los cubos hasta }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{o}{+}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ es: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cubos}\PY{p}{)}
+         
+         \PY{n}{prin}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+lista de cubos: [0, 1, 8, 27, 64, 125, 216, 343]
+La suma de todos los numeros hasta 7 es: 28
+La suma de todos los cubos hasta 7 es:  784
+
+    \end{Verbatim}
+
+    \subsubsection{11. Write and test a function to meet this specification.
+squareEach(nums) nums is a list of numbers. Modifies the list by
+squaring each
+entry.}\label{write-and-test-a-function-to-meet-this-specification.-squareeachnums-nums-is-a-list-of-numbers.-modifies-the-list-by-squaring-each-entry.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k}{def} \PY{n+nf}{squareEach}\PY{p}{(}\PY{n}{nums}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{nums}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{nums}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{nums}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+         
+         \PY{k}{def} \PY{n+nf}{principal}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lista:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+             \PY{n}{squareEach}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lista modificada:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+         
+         \PY{n}{lista}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{]}
+         \PY{n}{principal}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+lista:
+[2, 3, 4, 5, 6, 7]
+Lista modificada:
+[4, 9, 16, 25, 36, 49]
+
+    \end{Verbatim}
+
+    \subsubsection{12. Write and test a function to meet this specification.
+sumList(nums) nums is a list of numbers. Returns the sum of the numbers
+in the
+list.}\label{write-and-test-a-function-to-meet-this-specification.-sumlistnums-nums-is-a-list-of-numbers.-returns-the-sum-of-the-numbers-in-the-list.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{k}{def} \PY{n+nf}{sumList}\PY{p}{(}\PY{n}{nums}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{nums}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{principal}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lista: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{lista}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{La suma de la lista: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{suma}\PY{o}{=}\PY{n}{sumList}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{suma}\PY{p}{)}
+             \PY{k}{return} \PY{n}{suma}
+         
+         \PY{n}{lista}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}
+         \PY{n}{a}\PY{o}{=}\PY{n}{principal}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Lista:  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+La suma de la lista: 
+45
+
+    \end{Verbatim}
+
+    \subsubsection{13. Write and test a function to meet this specification.
+toNumbers(strList) strList is a list of strings, each of which
+represents a number. Modi- fies each entry in the list by converting it
+to a
+number.}\label{write-and-test-a-function-to-meet-this-specification.-tonumbersstrlist-strlist-is-a-list-of-strings-each-of-which-represents-a-number.-modi--fies-each-entry-in-the-list-by-converting-it-to-a-number.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{def} \PY{n+nf}{toNumbers}\PY{p}{(}\PY{n}{strList}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{strList}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{strList}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{strList}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{principal}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lista de numeros en string: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+             \PY{n}{toNumbers}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lista modificada: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+         
+         \PY{n}{lista}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{5}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{n}{principal}\PY{p}{(}\PY{n}{lista}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Lista de numeros en string: 
+['1', '2', '3', '4', '5']
+Lista modificada: 
+[1, 2, 3, 4, 5]
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
