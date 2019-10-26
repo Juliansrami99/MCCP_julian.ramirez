@@ -1,0 +1,1113 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{mcpp\_taller8\_Julian\_Ramirez}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Taller 8}\label{taller-8}
+
+Métodos Computacionales para Políticas Públicas - URosario
+
+\textbf{Entrega: viernes 18-oct-2019 11:59 PM}
+
+    \textbf{Julián Santiago Ramírez} julians.ramirez@urosario.edu.co
+
+    \subsection{Instrucciones:}\label{instrucciones}
+
+\begin{itemize}
+\tightlist
+\item
+  Guarde una copia de este \emph{Jupyter Notebook} en su computador,
+  idealmente en una carpeta destinada al material del curso.
+\item
+  Modifique el nombre del archivo del \emph{notebook}, agregando al
+  final un guión inferior y su nombre y apellido, separados estos
+  últimos por otro guión inferior. Por ejemplo, mi \emph{notebook} se
+  llamaría: mcpp\_taller8\_santiago\_matallana
+\item
+  Marque el \emph{notebook} con su nombre y e-mail en el bloque verde
+  arriba. Reemplace el texto "{[}Su nombre acá{]}" con su nombre y
+  apellido. Similar para su e-mail.
+\item
+  Desarrolle la totalidad del taller sobre este \emph{notebook},
+  insertando las celdas que sea necesario debajo de cada pregunta. Haga
+  buen uso de las celdas para código y de las celdas tipo
+  \emph{markdown} según el caso.
+\item
+  Recuerde salvar periódicamente sus avances.
+\item
+  Cuando termine el taller:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Descárguelo en PDF. Si tiene algún problema con la conversión,
+    descárguelo en HTML.
+  \item
+    Suba todos los archivos a su repositorio en GitHub, en una carpeta
+    destinada exclusivamente para este taller, antes de la fecha y hora
+    límites.
+  \end{enumerate}
+\end{itemize}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{1. {[}1 punto{]}}\label{punto}
+
+Usando expresiones regulares extraiga en una lista todos los números
+presentes en el siguiente objeto de Python:
+
+ob1 = "JEFF BEZOS, the founder of Amazon, has reached a divorce
+settlement with his wife, MacKenzie. Mr Bezos will keep all the shares
+in the Washington Post and Blue Origin, a space-exploration firm, as
+well as 75\% of the couple's Amazon stock. Mrs Bezos will retain a 4\%
+stake in the tech giant, worth nearly \$36bn, which is likely to make
+her the third-richest woman alive when the divorce is finalised."
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Importamos la libreria que nos permite usar expresiones regulares \PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{k+kn}{import} \PY{n+nn}{re}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} variable ob1}
+        \PY{n}{ob1} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{JEFF BEZOS, the founder of Amazon, has reached a divorce settlement with his wife, MacKenzie. Mr Bezos will keep all the shares in the Washington Post and Blue Origin, a space\PYZhy{}exploration firm, as well as 75}\PY{l+s+si}{\PYZpc{} o}\PY{l+s+s2}{f the couple’s Amazon stock. Mrs Bezos will retain a 4}\PY{l+s+si}{\PYZpc{} s}\PY{l+s+s2}{take in the tech giant, worth nearly \PYZdl{}36bn, which is likely to make her the third\PYZhy{}richest woman alive when the divorce is finalised.}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{n}{numeros}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob1}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Números en el texto: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{numeros}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Números en el texto:  ['75', '4', '36']
+
+    \end{Verbatim}
+
+    \subsubsection{2. {[}1 punto{]}}\label{punto}
+
+Usando expresiones regulares ahora extraiga de \emph{ob1} sólo los
+números que correspondan a porcentajes.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{porcentajes}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob1}\PY{p}{)}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Números con porcentaje en el texto: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{porcentajes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Números con porcentaje en el texto:  ['75\%', '4\%']
+
+    \end{Verbatim}
+
+    \subsubsection{3. {[}2 puntos{]}}\label{puntos}
+
+Usando expresiones regulares, escriba una función de Python que reciba
+una fecha en formato \textbf{Marzo 7, 2019} y retorne la fecha en
+formato \textbf{2019-07-03}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{def} \PY{n+nf}{conversion\PYZus{}fecha}\PY{p}{(}\PY{n}{fecha}\PY{p}{)}\PY{p}{:}
+             \PY{n}{def\PYZus{}fecha} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{meses} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Enero}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Febrero}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Marzo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Abril}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mayo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Junio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Julio}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Agosto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Septiembre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Octubre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Noviembre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Diciembre}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} ahora de la fecha queremos obtener el dia y el año}
+             \PY{c+c1}{\PYZsh{} Primero buscamos los numeros}
+             \PY{n}{numeros} \PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{([}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d]+), ([}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d]+)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{fecha}\PY{p}{)}
+             \PY{n}{fec}\PY{o}{=}\PY{n}{numeros}\PY{o}{.}\PY{n}{groups}\PY{p}{(}\PY{p}{)}
+             \PY{n}{def\PYZus{}fecha}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{fec}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}\PYZsh{} El primer dato de fec es el dia y el segundo es el año, por lo tanto preguntamos si el dia es igual a 23}
+             \PY{k}{if} \PY{n}{fec}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{23}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                 \PY{n}{dia\PYZus{}actualizado} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{23}\PY{l+s+s1}{\PYZsq{}}
+                 \PY{n}{def\PYZus{}fecha}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dia\PYZus{}actualizado}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{}\PYZsh{} Hasta el momento hemos agregado el año y el dia, falta el mes}
+             \PY{n}{mes}\PY{o}{=}\PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{meses}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{meses}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{==}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Octubre}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                     \PY{n}{mes}\PY{o}{=}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+                     \PY{k}{break}
+             \PY{c+c1}{\PYZsh{}\PYZsh{} Agregamos el mes a la fecha definitiva}
+             \PY{n}{def\PYZus{}fecha}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{mes}\PY{p}{)}
+             \PY{n}{total}\PY{o}{=}\PY{n+nb}{str}\PY{p}{(}\PY{n}{def\PYZus{}fecha}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{def\PYZus{}fecha}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{def\PYZus{}fecha}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{total}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{} variable que guarda la fecha \PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{n}{fecha} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Octubre 23, 2019}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{nueva} \PY{o}{=} \PY{n}{conversion\PYZus{}fecha}\PY{p}{(}\PY{n}{fecha}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Antiguo fórmato: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fecha}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Nuevo fórmato: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{nueva}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Antiguo fórmato:  Octubre 23, 2019
+Nuevo fórmato:  2019-23-10
+
+    \end{Verbatim}
+
+    \subsubsection{4. {[}3 puntos{]}}\label{puntos}
+
+\emph{ob2} es un string que reune una lista de clases en una
+universidad. Use expresiones regulares para extraer los códigos de cada
+una de las clases. Ejemplo: El código de la clase \textbf{COMPSCI 143
+(Spring 2012): Machine Learning} es 143.
+
+ob2 = "COMPSCI 270 (Spring 2019): Introduction to Artificial
+Intelligence. COMPSCI 590.2 (Fall 2018): Computational Microeconomics:
+Game Theory, Social Choice, and Mechanism Design. COMPSCI 223 (Spring
+2018): Computational Microeconomics. COMPSCI 570 (Fall 2017): Artificial
+Intelligence. COMPSCI 590.3 (Fall 2017) / 590.1 (Spring 2018): Ethics
+and AI. COMPSCI 590.2 (Spring 2017): Computation, Information, and
+Learning in Market Design. COMPSCI 590.4 (Spring 2016): Computational
+Microeconomics: Game Theory, Social Choice, and Mechanism Design.
+COMPSCI 290.4/590.4 (Spring 2015): Crowdsourcing Societal Tradeoffs.
+COMPSCI 570 (Fall 2014): Artificial Intelligence. COMPSCI 590.4 (Spring
+2014): Computational Microeconomics: Game Theory, Social Choice, and
+Mechanism Design. COMPSCI 590.1 (Fall 2012): Linear and Integer
+Programming. COMPSCI 173 (Spring 2012): Computational Microeconomics.
+COMPSCI 296.1 (Fall 2011): Computational Microeconomics: Game Theory,
+Social Choice, and Mechanism Design. COMPSCI 296.1 (Fall 2010): Linear
+and Integer Programming. COMPSCI 173 (Spring 2010): Computational
+Microeconomics. COMPSCI 196.1/296.1 (Fall 2009): Computational
+Microeconomics: Game Theory, Social Choice, and Mechanism Design.
+COMPSCI 170 (Spring 2009): Introduction to Artificial Intelligence.
+COMPSCI 270 (Fall 2008): Artificial Intelligence. COMPSCI 196/296.2
+(Spring 2008): Linear and Integer Programming. COMPSCI 196.2 (Fall
+2007): Introduction to Computational Economics. COMPSCI 296.3 (Spring
+2007): Topics in Computational Economics. COMPSCI 296.2 (Fall 2006):
+Computational Game Theory and Mechanism Design."
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Guardamos ob2 \PYZsh{}\PYZsh{}}
+         \PY{n}{ob2} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{COMPSCI 270 (Spring 2019): Introduction to Artificial Intelligence. COMPSCI 590.2 (Fall 2018): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 223 (Spring 2018): Computational Microeconomics. COMPSCI 570 (Fall 2017): Artificial Intelligence. COMPSCI 590.3 (Fall 2017) / 590.1 (Spring 2018): Ethics and AI. COMPSCI 590.2 (Spring 2017): Computation, Information, and Learning in Market Design. COMPSCI 590.4 (Spring 2016): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 290.4/590.4 (Spring 2015): Crowdsourcing Societal Tradeoffs. COMPSCI 570 (Fall 2014): Artificial Intelligence. COMPSCI 590.4 (Spring 2014): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 590.1 (Fall 2012): Linear and Integer Programming. COMPSCI 173 (Spring 2012): Computational Microeconomics. COMPSCI 296.1 (Fall 2011): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 296.1 (Fall 2010): Linear and Integer Programming. COMPSCI 173 (Spring 2010): Computational Microeconomics. COMPSCI 196.1/296.1 (Fall 2009): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 170 (Spring 2009): Introduction to Artificial Intelligence. COMPSCI 270 (Fall 2008): Artificial Intelligence. COMPSCI 196/296.2 (Spring 2008): Linear and Integer Programming. COMPSCI 196.2 (Fall 2007): Introduction to Computational Economics. COMPSCI 296.3 (Spring 2007): Topics in Computational Economics. COMPSCI 296.2 (Fall 2006): Computational Game Theory and Mechanism Design.}\PY{l+s+s2}{\PYZdq{}}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Buscamos los números que acompañan la palabra COMPSCI }
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Observemos que hay dos clases de codigo: el primero un numero normal y el segundo se puede ver de esta forma: 290.4/590.4}
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Codigos tipo 1}
+         \PY{n}{codigo\PYZus{}tipo1}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ (}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+) }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob2}\PY{p}{)} 
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Codigos tipo 2}
+         \PY{n}{codigo\PYZus{}tipo2}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ (}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+/}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+) }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob2}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Supongo que los codigos tipo 2 son dos clases diferentes y por ende debo separarlos}
+         \PY{n}{nuevo\PYZus{}codigo}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{cod} \PY{o+ow}{in} \PY{n}{codigo\PYZus{}tipo2}\PY{p}{:}
+             \PY{n}{tupla}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d)/(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cod}\PY{p}{)}\PY{o}{.}\PY{n}{groups}\PY{p}{(}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} agregamos ambos codigos}
+             \PY{n}{nuevo\PYZus{}codigo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tupla}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{n}{nuevo\PYZus{}codigo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tupla}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             
+         \PY{n}{total}\PY{o}{=}\PY{n}{codigo\PYZus{}tipo1}\PY{o}{+}\PY{n}{nuevo\PYZus{}codigo}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Códigos:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{total}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}Cod=re.findall(\PYZsq{}/ (\PYZbs{}d+.\PYZbs{}d+)\PYZsq{},ob2) }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Codigos: ['270', '590.2', '223', '570', '590.3', '590.1', '590.2', '590.4', '570', '590.4', '590.1', '173', '296.1', '296.1', '173', '170', '270', '196.2', '296.3', '296.2', '290.4', '590.4', '196.1', '296.1', '196', '296.2']
+
+    \end{Verbatim}
+
+    \subsubsection{5. {[}5 puntos{]}}\label{puntos}
+
+\emph{ob3} es un string que reune una lista de publicaciones. Use
+expresiones regulares para extraer todos los \emph{Journals} en los
+cuales el autor ha publicado. Ejemplo: El paper \textbf{Bail, CA. "The
+configuration of symbolic boundaries against immigrants in Europe."
+American Sociological Review 73.1 (January 1, 2008): 37-59. Full Text}
+fue publicado en el Journal \emph{American Sociological Review}
+
+ob3 = "Bail, CA, Argyle, LP, Brown, TW, Bumpus, JP, Chen, H, Hunzaker,
+MBF, Lee, J, Mann, M, Merhout, F, and Volfovsky, A. "Exposure to
+opposing views on social media can increase political polarization."
+Proceedings of the National Academy of Sciences of the United States of
+America 115.37 (September 2018): 9216-9221. Full Text Open Access
+Copy.\n", "Bail, CA, Merhout, F, and Ding, P. "Using Internet search
+data to examine the relationship between anti-Muslim and pro-ISIS
+sentiment in U.S. counties." Science Advances 4.6 (June 6, 2018):
+eaao5948-null. Full Text Open Access Copy.\n", "Bail, CA, Brown, TW, and
+Mann, M. "Channeling Hearts and Minds: Advocacy Organizations,
+Cognitive-Emotional Currents, and Public Conversation." American
+Sociological Review 82.6 (December 1, 2017): 1188-1213. Full Text.\n",
+"Bail, CA. "Taming Big Data: Using App Technology to Study
+Organizational Behavior on Social Media." Sociological Methods and
+Research 46.2 (March 1, 2017): 189-217. Full Text.\n", "McDonnell, TE,
+Bail, CA, and Tavory, I. "A Theory of Resonance." Sociological Theory
+35.1 (March 1, 2017): 1-14. Full Text.\n", "Bail, CA. "Combining natural
+language processing and network analysis to examine how advocacy
+organizations stimulate conversation on social media." Proceedings of
+the National Academy of Sciences of the United States of America 113.42
+(October 2016): 11823-11828. Full Text.\n", "Bail, CA. "Emotional
+Feedback and the Viral Spread of Social Media Messages About Autism
+Spectrum Disorders." American journal of public health 106.7 (July
+2016): 1173-1180. Full Text.\n", "Bail, CA. "The public life of secrets:
+Deception, disclosure, and discursive framing in the policy process."
+Sociological Theory 33.2 (January 1, 2015): 97-124. Full Text.\n",
+"Bail, CA. "The cultural environment: Measuring culture with big data."
+Theory and Society 43.3 (January 1, 2014): 465-524. Full Text.""
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Variable ob3}
+         \PY{n}{ob3} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA, Argyle, LP, Brown, TW, Bumpus, JP, Chen, H, Hunzaker, MBF, Lee, J, Mann, M, Merhout, F, and Volfovsky, A. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Exposure to opposing views on social media can increase political polarization.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Proceedings of the National Academy of Sciences of the United States of America 115.37 (September 2018): 9216\PYZhy{}9221. Full Text Open Access Copy.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA, Merhout, F, and Ding, P. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Using Internet search data to examine the relationship between anti\PYZhy{}Muslim and pro\PYZhy{}ISIS sentiment in U.S. counties.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Science Advances 4.6 (June 6, 2018): eaao5948\PYZhy{}null. Full Text Open Access Copy.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA, Brown, TW, and Mann, M. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Channeling Hearts and Minds: Advocacy Organizations, Cognitive\PYZhy{}Emotional Currents, and Public Conversation.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ American Sociological Review 82.6 (December 1, 2017): 1188\PYZhy{}1213. Full Text.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Taming Big Data: Using App Technology to Study Organizational Behavior on Social Media.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Sociological Methods and Research 46.2 (March 1, 2017): 189\PYZhy{}217. Full Text.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{McDonnell, TE, Bail, CA, and Tavory, I. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{A Theory of Resonance.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Sociological Theory 35.1 (March 1, 2017): 1\PYZhy{}14. Full Text.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Combining natural language processing and network analysis to examine how advocacy organizations stimulate conversation on social media.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Proceedings of the National Academy of Sciences of the United States of America 113.42 (October 2016): 11823\PYZhy{}11828. Full Text.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Emotional Feedback and the Viral Spread of Social Media Messages About Autism Spectrum Disorders.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ American journal of public health 106.7 (July 2016): 1173\PYZhy{}1180. Full Text.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{The public life of secrets: Deception, disclosure, and discursive framing in the policy process.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Sociological Theory 33.2 (January 1, 2015): 97\PYZhy{}124. Full Text.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{Bail, CA. }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{The cultural environment: Measuring culture with big data.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ Theory and Society 43.3 (January 1, 2014): 465\PYZhy{}524. Full Text.}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}} 
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Guardaremos todos los journals en esta lista}
+         \PY{n}{journals} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Buscamos en el texto frases: palabra + fecha}
+         \PY{n}{frases} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{w+ .+ }\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob3}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{frases}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{jour} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{w+}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{D+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{frases}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+             \PY{n}{journals}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{jour}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Modificamos el primer journal}
+         \PY{n}{journals}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{National Academy of Sciences of the United States of America}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{borrar}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{journals}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{journals}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sociological Theory }\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                  \PY{n}{borrar}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+         \PY{k}{del} \PY{n}{journals}\PY{p}{[}\PY{n}{borrar}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         \PY{k}{del} \PY{n}{journals}\PY{p}{[}\PY{n}{borrar}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Journals: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{journals}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Journals:  ['National Academy of Sciences of the United States of America', 'Science Advances ', 'American Sociological Review ', 'Sociological Methods and Research ', 'Proceedings of the National Academy of Sciences of the United States of America ', 'American journal of public health ', 'Theory and Society ']
+
+    \end{Verbatim}
+
+    \subsubsection{6. {[}10 puntos{]}}\label{puntos}
+
+Vamos a hacer "scraping" a esta página:
+https://archive.ics.uci.edu/ml/datasets.php, que contiene un listado de
+468 bases de datos que hacen parte del repositorio de la Universidad de
+California, Irvine.
+
+    Su tarea consiste en crear un "Pandas dataframe" que contenga 468 filas
+(una por base de datos) y las siguientes columnas: - Nombre de la base
+de datos - Link a la base de datos - Tipo de datos - Tipo de tarea a
+resolver (default task) - Tipo de las variables - Número de
+observaciones - Número de variables - Año - Descripción de la base
+(Pista: Utilice la opción list view:
+https://archive.ics.uci.edu/ml/datasets.php?format=\&task=\&att=\&area=\&numAtt=\&numIns=\&type=\&sort=nameUp\&view=list)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}94}]:} \PY{k+kn}{import} \PY{n+nn}{requests}
+         \PY{k+kn}{from} \PY{n+nn}{bs4} \PY{k}{import} \PY{n}{BeautifulSoup}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{c+c1}{\PYZsh{} Info pag}
+         \PY{n}{link} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/datasets.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{text}
+         \PY{n}{l} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{link}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lxml}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}85}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Buscamos primero todas las lineas que inician con \PYZlt{}b\PYZgt{}}
+         \PY{n}{lineas} \PY{o}{=} \PY{n}{l}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{str\PYZus{}lineas}\PY{o}{=}\PY{n+nb}{str}\PY{p}{(}\PY{n}{lineas}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} En esas lineas buscamos unas con una caracteristica especifica}
+         \PY{n}{especificas}\PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZlt{}b\PYZgt{}\PYZlt{}a href=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{datasets/}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{w+.+?\PYZlt{}/a\PYZgt{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{str\PYZus{}lineas}\PY{p}{)}
+         
+         
+         \PY{c+c1}{\PYZsh{} Crearemos una lista con todos los nombres}
+         \PY{n}{nombres} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{especificas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{nom} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZgt{}(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{w+.+)[\PYZca{}\PYZlt{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{especificas}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+             \PY{n}{nombres}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{nom}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Ahora de los nombres los quitamos el \PYZlt{}/a\PYZgt{}}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{especificas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{nom} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[\PYZca{}\PYZgt{}].+[\PYZca{}\PYZgt{}\PYZlt{}/a\PYZgt{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{nombres}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}    
+             \PY{n}{nombres}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{n}{nom}
+             
+         \PY{c+c1}{\PYZsh{}print(\PYZdq{}Variables: \PYZdq{}, nombres)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}84}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} datos caracteristas}
+         \PY{c+c1}{\PYZsh{} lineas que inician con \PYZlt{}p\PYZgt{}}
+         \PY{n}{carac} \PY{o}{=} \PY{n}{l}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{} Caracteristica de los datos, falta el ultimo}
+         \PY{n}{caracteristicas}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(href=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{datasets/.+?\PYZlt{}b\PYZgt{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{str}\PY{p}{(}\PY{n}{carac}\PY{p}{)}\PY{p}{)}\PY{o}{+}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{href=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{datasets/Rice+Leaf+Diseases}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}Rice Leaf Diseases\PYZlt{}/a\PYZgt{}\PYZlt{}/b\PYZgt{}\PYZlt{}/p\PYZgt{}, \PYZlt{}p class=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}Multivariate}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZlt{}/p\PYZgt{}, \PYZlt{}p class=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}Classification}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZlt{}/p\PYZgt{}, \PYZlt{}p class=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}Integer}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZlt{}/p\PYZgt{}, \PYZlt{}p class=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}120}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZlt{}/p\PYZgt{}, \PYZlt{}p class=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZlt{}/p\PYZgt{}, \PYZlt{}p class=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{normal}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}2019}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZlt{}/p\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Tipos de datos}
+         \PY{c+c1}{\PYZsh{}\PYZsh{} Guardare todo en una lista de listas}
+         
+         \PY{n}{tipos}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{p}{]}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{especificas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{carac\PYZus{}es} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}p.+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{caracteristicas}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+             \PY{n}{tipo} \PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZlt{}p.+?\PYZlt{}/p\PYZgt{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{carac\PYZus{}es}\PY{p}{)}
+             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{pal1}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(\PYZgt{}.+?}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{)|(}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{tipo}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{pal2}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[\PYZca{}\PYZgt{}].+[\PYZca{}}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{]|}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{w+|}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{pal1}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{tipos}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pal2}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{} \PYZbs{}xa0 indica missing}
+         \PY{c+c1}{\PYZsh{} Cambiados por NA}
+         \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{tipos}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{especificas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{j}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}xa0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                     \PY{n}{j}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NA}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}90}]:} \PY{c+c1}{\PYZsh{} LINKS}
+         
+         \PY{n}{l1} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{especificas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{pal1} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{(datasets/.+?)}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{especificas}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+             \PY{n}{pal2} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[\PYZca{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{].+[\PYZca{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{pal1}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+             \PY{n}{l1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pal2}\PY{p}{)}
+         \PY{n}{l2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{l1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{pal} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n}{l1}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+             \PY{n}{l2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pal}\PY{p}{)}
+             
+         \PY{c+c1}{\PYZsh{} Links parte III}
+         \PY{n}{l3} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{l1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{html} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{l2}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{text}
+             \PY{n}{s\PYZus{}html} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{html}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lxml}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{pal\PYZus{}a} \PY{o}{=} \PY{n}{s\PYZus{}html}\PY{o}{.}\PY{n}{find\PYZus{}all}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+             \PY{n}{html\PYZus{}nue} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}a( href=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{../machine\PYZhy{}learning\PYZhy{}databases/.+?}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{})}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{str}\PY{p}{(}\PY{n}{pal\PYZus{}a}\PY{p}{)}\PY{p}{)}
+             \PY{k}{if} \PY{n}{html\PYZus{}nue} \PY{o}{==} \PY{p}{[}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{l3}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{l3}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{html\PYZus{}nue}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}92}]:} \PY{n}{l\PYZus{}def} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{especificas}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{l3}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                 \PY{n}{l\PYZus{}def}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{pal1} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/.+[\PYZca{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZgt{}]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{l3}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{pal2} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n}{pal1}
+                 \PY{n}{l\PYZus{}def}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{pal2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}99}]:} \PY{n}{tabla} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Base de datos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{nombres}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo de datos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{tipos}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo de tarea a resolver}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{tipos}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo de variables}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{tipos}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Número de obs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{tipos}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Número de variables}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{tipos}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Año}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{tipos}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{,}
+                 \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Links}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{l\PYZus{}def}\PY{p}{\PYZcb{}}
+         \PY{n}{definitiva} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{tabla}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Ordenando el data frame}
+         
+         \PY{n}{definitiva}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nombres mayu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{definitiva}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Base de datos}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{upper}\PY{p}{(}\PY{p}{)}
+         \PY{n}{definitiva}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nombres mayu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} 
+                          \PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{True}\PY{p}{]}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{} Borramos la variable creada del data frame}
+         \PY{k}{del} \PY{n}{definitiva}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nombres mayu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}   
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}100}]:} \PY{c+c1}{\PYZsh{} Descripción de la base}
+          \PY{n}{link} \PY{o}{=} \PY{n}{requests}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://archive.ics.uci.edu/ml/datasets.php?format=\PYZam{}task=\PYZam{}att=\PYZam{}area=\PYZam{}numAtt=\PYZam{}numIns=\PYZam{}type=\PYZam{}sort=nameUp\PYZam{}view=list}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{text}
+          
+          \PY{n}{s\PYZus{}link} \PY{o}{=} \PY{n}{BeautifulSoup}\PY{p}{(}\PY{n}{link}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{lxml}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          
+          \PY{n}{des} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}b\PYZgt{}\PYZlt{}a href=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{datasets[}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{s}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{S]*?\PYZlt{}/p\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n+nb}{str}\PY{p}{(}\PY{n}{s\PYZus{}link}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{descripcion} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{des}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+              \PY{k}{try}\PY{p}{:}
+                  \PY{n}{pal1} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}/b\PYZgt{}([}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{s}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{S]*?)\PYZlt{}/p\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{des}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{pal2} \PY{o}{=} \PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{[\PYZca{}:\PYZlt{}/b\PYZgt{} ][}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{s}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{S]*[\PYZca{}\PYZlt{}/p\PYZgt{} ]}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{pal1}\PY{p}{)}\PY{o}{.}\PY{n}{group}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{descripcion}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{re}\PY{o}{.}\PY{n}{sub}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{pal2}\PY{p}{)}\PY{p}{)}
+              \PY{k}{except} \PY{n+ne}{AttributeError}\PY{p}{:}
+                  \PY{n}{descripcion}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{definitiva}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Descripción base datos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{descripcion}
+          
+          \PY{c+c1}{\PYZsh{} Resultado}
+          \PY{n}{definitiva}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}100}]:}                                          Base de datos  \textbackslash{}
+          462                2.4 GHZ Indoor Channel Measurements   
+          237           3D Road Network (North Jutland, Denmark)   
+          301                          AAAI 2013 Accepted Papers   
+          294                          AAAI 2014 Accepted Papers   
+          0                                              Abalone   
+          170                    Abscisic Acid Signaling Network   
+          427                                Absenteeism at work   
+          260  Activities of Daily Living (ADLs) Recognition {\ldots}   
+          275  Activity Recognition from Single Chest-Mounted{\ldots}   
+          351  Activity Recognition system based on Multisens{\ldots}   
+          411  Activity recognition with healthy older people{\ldots}   
+          181                                Acute Inflammations   
+          1                                                Adult   
+          371                                        Air quality   
+          345                                        Air Quality   
+          279                                 Airfoil Self-Noise   
+          476                         Alcohol QCM Sensor Dataset   
+          208                              Amazon Access Samples   
+          207                        Amazon Commerce reviews set   
+          2                                            Annealing   
+          3                          Anonymous Microsoft Web Dat   
+          390                               Anuran Calls (MFCCs)   
+          358                       Appliances energy prediction   
+          405                       APS Failure at Scania Trucks   
+          164                                             Arcene   
+          4                                            Arrhythmi   
+          5                                Artificial Characters   
+          6                                 Audiology (Original)   
+          7                             Audiology (Standardized)   
+          457                                          Audit Dat   
+          ..                                                 {\ldots}   
+          248                            User Knowledge Modeling   
+          257  USPTO Algorithm Challenge, run by NASA-Harvard{\ldots}   
+          204                                   Vertebral Column   
+          206                     Vicon Physical Action Data Set   
+          436               Victorian Era Authorship Attribution   
+          139            Volcanoes on Venus - JARtool experiment   
+          190                Wall-Following Robot Navigation Dat   
+          103                              Water Treatment Plant   
+          474                             Wave Energy Converters   
+          104            Waveform Database Generator (Version 1)   
+          105            Waveform Database Generator (Version 2)   
+          241  Wearable Computing: Classification of Body Pos{\ldots}   
+          363                                   Website Phishing   
+          262  Weight Lifting Exercises monitored with Inerti{\ldots}   
+          447       WESAD (Wearable Stress and Affect Detection)   
+          280                                Wholesale customers   
+          321                                            wiki4HE   
+          273                                               Wilt   
+          106                                               Wine   
+          182                                       Wine Quality   
+          406                       Wireless Indoor Localization   
+          487  WISDM Smartphone and Smartwatch Activity and B{\ldots}   
+          234                                Yacht Hydrodynamics   
+          196                                  YearPredictionMSD   
+          107                                              Yeast   
+          215                 YouTube Comedy Slam Preference Dat   
+          258              YouTube Multiview Video Games Dataset   
+          364                            YouTube Spam Collection   
+          396                                    Z-Alizadeh Sani   
+          108                                                Zoo   
+          
+                                       Tipo de datos  \textbackslash{}
+          462                           Multivariate   
+          237                       Sequential, Text   
+          301                           Multivariate   
+          294                           Multivariate   
+          0                             Multivariate   
+          170                           Multivariate   
+          427              Multivariate, Time-Series   
+          260  Multivariate, Sequential, Time-Series   
+          275    Univariate, Sequential, Time-Series   
+          351  Multivariate, Sequential, Time-Series   
+          411                             Sequential   
+          181                           Multivariate   
+          1                             Multivariate   
+          371              Multivariate, Time-Series   
+          345              Multivariate, Time-Series   
+          279                           Multivariate   
+          476                           Multivariate   
+          208             Time-Series, Domain-Theory   
+          207      Multivariate, Text, Domain-Theory   
+          2                             Multivariate   
+          3                                       NA   
+          390                           Multivariate   
+          358              Multivariate, Time-Series   
+          405                           Multivariate   
+          164                           Multivariate   
+          4                             Multivariate   
+          5                             Multivariate   
+          6                             Multivariate   
+          7                             Multivariate   
+          457                           Multivariate   
+          ..                                     {\ldots}   
+          248                           Multivariate   
+          257                          Domain-Theory   
+          204                           Multivariate   
+          206                            Time-Series   
+          436                                   Text   
+          139                                  Image   
+          190               Multivariate, Sequential   
+          103                           Multivariate   
+          474                           Multivariate   
+          104           Multivariate, Data-Generator   
+          105           Multivariate, Data-Generator   
+          241                             Sequential   
+          363                           Multivariate   
+          262                           Multivariate   
+          447              Multivariate, Time-Series   
+          280                           Multivariate   
+          321                           Multivariate   
+          273                           Multivariate   
+          106                           Multivariate   
+          182                           Multivariate   
+          406                           Multivariate   
+          487                           Multivariate   
+          234                           Multivariate   
+          196                           Multivariate   
+          107                           Multivariate   
+          215                                   Text   
+          258                     Multivariate, Text   
+          364                                   Text   
+          396                                     NA   
+          108                           Multivariate   
+          
+                               Tipo de tarea a resolver           Tipo de variables  \textbackslash{}
+          462                            Classification                        Real   
+          237                    Regression, Clustering                        Real   
+          301                                Clustering                          NA   
+          294                                Clustering                          NA   
+          0                              Classification  Categorical, Integer, Real   
+          170                          Causal-Discovery                     Integer   
+          427                Classification, Clustering               Integer, Real   
+          260                Classification, Clustering                          NA   
+          275                Classification, Clustering                        Real   
+          351                            Classification                        Real   
+          411                            Classification                        Real   
+          181                            Classification        Categorical, Integer   
+          1                              Classification        Categorical, Integer   
+          371                                Regression                        Real   
+          345                                Regression                        Real   
+          279                                Regression                        Real   
+          476    Classification, Regression, Clustering                        Real   
+          208  Regression, Clustering, Causal-Discovery                          NA   
+          207                            Classification                        Real   
+          2                              Classification  Categorical, Integer, Real   
+          3                         Recommender-Systems                 Categorical   
+          390                Classification, Clustering                        Real   
+          358                                Regression                        Real   
+          405                            Classification               Integer, Real   
+          164                            Classification                        Real   
+          4                              Classification  Categorical, Integer, Real   
+          5                              Classification  Categorical, Integer, Real   
+          6                              Classification                 Categorical   
+          7                              Classification                 Categorical   
+          457                            Classification                        Real   
+          ..                                        {\ldots}                         {\ldots}   
+          248                Classification, Clustering                     Integer   
+          257                            Classification                     Integer   
+          204                            Classification                        Real   
+          206                            Classification                        Real   
+          436                            Classification                          NA   
+          139                            Classification                          NA   
+          190                            Classification                        Real   
+          103                                Clustering               Integer, Real   
+          474                                Regression                        Real   
+          104                            Classification                        Real   
+          105                            Classification                        Real   
+          241                            Classification               Integer, Real   
+          363                            Classification                     Integer   
+          262                            Classification                        Real   
+          447                Classification, Regression                        Real   
+          280                Classification, Clustering                     Integer   
+          321  Regression, Clustering, Causal-Discovery                          NA   
+          273                            Classification                          NA   
+          106                            Classification               Integer, Real   
+          182                Classification, Regression                        Real   
+          406                            Classification                        Real   
+          487                            Classification                     Integer   
+          234                                Regression                        Real   
+          196                                Regression                        Real   
+          107                            Classification                        Real   
+          215                            Classification                          NA   
+          258                Classification, Clustering               Integer, Real   
+          364                            Classification                          NA   
+          396                            Classification               Integer, Real   
+          108                            Classification        Categorical, Integer   
+          
+              Número de obs Número de variables   Año  \textbackslash{}
+          462          7840                   5  2018   
+          237        434874                   4  2013   
+          301           150                   5  2014   
+          294           399                   6  2014   
+          0            4177                   8  1995   
+          170           300                  43  2008   
+          427           740                  21  2018   
+          260          2747                  NA  2013   
+          275            NA                  NA  2014   
+          351         42240                   6  2016   
+          411         75128                   9  2016   
+          181           120                   6  2009   
+          1           48842                  14  1996   
+          371          9358                  15  2016   
+          345          9358                  15  2016   
+          279          1503                   6  2014   
+          476           125                   8  2019   
+          208         30000               20000  2011   
+          207          1500               10000  2011   
+          2             798                  38    NA   
+          3           37711                 294  1998   
+          390          7195                  22  2017   
+          358         19735                  29  2017   
+          405         60000                 171  2017   
+          164           900               10000  2008   
+          4             452                 279  1998   
+          5            6000                   7  1992   
+          6             226                  NA  1987   
+          7             226                  69  1992   
+          457           777                  18  2018   
+          ..            {\ldots}                 {\ldots}   {\ldots}   
+          248           403                   5  2013   
+          257           306                   5  2013   
+          204           310                   6  2011   
+          206          3000                  27  2011   
+          436         93600                1000  2018   
+          139            NA                  NA    NA   
+          190          5456                  24  2010   
+          103           527                  38  1993   
+          474        288000                  49  2019   
+          104          5000                  21  1988   
+          105          5000                  40  1988   
+          241        165632                  18  2013   
+          363          1353                  10  2016   
+          262         39242                 152  2013   
+          447      63000000                  12  2018   
+          280           440                   8  2014   
+          321           913                  53  2015   
+          273          4889                   6  2014   
+          106           178                  13  1991   
+          182          4898                  12  2009   
+          406          2000                   7  2017   
+          487           120                  NA  2019   
+          234           308                   7  2013   
+          196        515345                  90  2011   
+          107          1484                   8  1996   
+          215       1138562                   3  2012   
+          258        120000             1000000  2013   
+          364          1956                   5  2017   
+          396           303                  56  2017   
+          108           101                  17  1990   
+          
+                                                           Links  \textbackslash{}
+          462  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          237  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          301  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          294  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          0    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          170  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          427  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          260  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          275  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          351  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          411  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          181  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          1    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          371  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          345  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          279  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          476  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          208  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          207  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          2    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          3    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          390  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          358  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          405  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          164  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          4    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          5    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          6    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          7    https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          457  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          ..                                                 {\ldots}   
+          248  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          257  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          204  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          206  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          436  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          139  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          190  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          103  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          474  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          104  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          105  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          241  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          363  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          262  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          447  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          280  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          321  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          273  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          106  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          182  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          406  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          487  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          234  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          196  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          107  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          215  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          258  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          364  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          396  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          108  https://archive.ics.uci.edu/ml/machine-learnin{\ldots}   
+          
+                                          Descripción base datos  
+          462  Measurement of the S21,consists of 10 sweeps, {\ldots}  
+          237  3D road network with highly accurate elevation{\ldots}  
+          301  This data set compromises the metadata for the{\ldots}  
+          294  This data set compromises the metadata for the{\ldots}  
+          0    Predict the age of abalone from physical measu{\ldots}  
+          170  The objective is to determine the set of boole{\ldots}  
+          427  The database was created with records of absen{\ldots}  
+          260  This dataset comprises information regarding t{\ldots}  
+          275  The dataset collects data from a wearable acce{\ldots}  
+          351  This dataset contains temporal data from a Wir{\ldots}  
+          411  Sequential motion data from 14 healthy older p{\ldots}  
+          181  The data was created by a medical expert as a {\ldots}  
+          1    Predict whether income exceeds \$50K/yr based o{\ldots}  
+          371  Contains the responses of a gas multisensor de{\ldots}  
+          345  Contains the responses of a gas multisensor de{\ldots}  
+          279  NASA data set, obtained from a series of aerod{\ldots}  
+          476  Five different QCM gas sensors are used, and f{\ldots}  
+          208  Amazon's InfoSec is getting smarter about the {\ldots}  
+          207  The dataset is used for authorship identificat{\ldots}  
+          2                                 Steel annealing data  
+          3    Log of anonymous users of www.microsoft.com; p{\ldots}  
+          390  Acoustic features extracted from syllables of {\ldots}  
+          358  Experimental data used to create regression mo{\ldots}  
+          405  The datasets' positive class consists of compo{\ldots}  
+          164  ARCENE's task is to distinguish cancer versus {\ldots}  
+          4    Distinguish between the presence and absence o{\ldots}  
+          5    Dataset artificially generated by using first {\ldots}  
+          6                Nominal audiology dataset from Baylor  
+          7    Standardized version of the original audiology{\ldots}  
+          457  Exhaustive one year non-confidential data in t{\ldots}  
+          ..                                                 {\ldots}  
+          248  It is the real dataset about the students' kno{\ldots}  
+          257  Data used for USPTO Algorithm Competition. Con{\ldots}  
+          204  Data set containing values for six biomechanic{\ldots}  
+          206  The Physical Action Data Set includes 10 norma{\ldots}  
+          436  To create the largest authorship attribution d{\ldots}  
+          139  The JARtool project was a pioneering effort to{\ldots}  
+          190  The data were collected as the SCITOS G5 robot{\ldots}  
+          103               Multiple classes predict plant state  
+          474  This data set consists of positions and absorb{\ldots}  
+          104                       CART book's waveform domains  
+          105                       CART book's waveform domains  
+          241  A dataset with 5 classes (sitting-down, standi{\ldots}  
+          363                                                     
+          262  Six young health subjects were asked to perfor{\ldots}  
+          447  WESAD (Wearable Stress and Affect Detection) c{\ldots}  
+          280  The data set refers to clients of a wholesale {\ldots}  
+          321  Survey of faculty members from two Spanish uni{\ldots}  
+          273  High-resolution Remote Sensing data set (Quick{\ldots}  
+          106  Using chemical analysis determine the origin o{\ldots}  
+          182  Two datasets are included, related to red and {\ldots}  
+          406  Collected in indoor space by observing signal {\ldots}  
+          487  Contains accelerometer and gyroscope time-seri{\ldots}  
+          234  Delft data set, used to predict the hydodynami{\ldots}  
+          196  Prediction of the release year of a song from {\ldots}  
+          107  Predicting the Cellular Localization Sites of {\ldots}  
+          215  This dataset provides user vote data on which {\ldots}  
+          258  This dataset contains about 120k instances, ea{\ldots}  
+          364  It is a public set of comments collected for s{\ldots}  
+          396                It was collected for CAD diagnosis.  
+          108                   Artificial, 7 classes of animals  
+          
+          [488 rows x 9 columns]
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
