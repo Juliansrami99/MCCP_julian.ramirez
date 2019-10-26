@@ -459,36 +459,36 @@ COMPSCI 270 (Fall 2008): Artificial Intelligence. COMPSCI 196/296.2
 Computational Game Theory and Mechanism Design."
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Guardamos ob2 \PYZsh{}\PYZsh{}}
-         \PY{n}{ob2} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{COMPSCI 270 (Spring 2019): Introduction to Artificial Intelligence. COMPSCI 590.2 (Fall 2018): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 223 (Spring 2018): Computational Microeconomics. COMPSCI 570 (Fall 2017): Artificial Intelligence. COMPSCI 590.3 (Fall 2017) / 590.1 (Spring 2018): Ethics and AI. COMPSCI 590.2 (Spring 2017): Computation, Information, and Learning in Market Design. COMPSCI 590.4 (Spring 2016): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 290.4/590.4 (Spring 2015): Crowdsourcing Societal Tradeoffs. COMPSCI 570 (Fall 2014): Artificial Intelligence. COMPSCI 590.4 (Spring 2014): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 590.1 (Fall 2012): Linear and Integer Programming. COMPSCI 173 (Spring 2012): Computational Microeconomics. COMPSCI 296.1 (Fall 2011): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 296.1 (Fall 2010): Linear and Integer Programming. COMPSCI 173 (Spring 2010): Computational Microeconomics. COMPSCI 196.1/296.1 (Fall 2009): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 170 (Spring 2009): Introduction to Artificial Intelligence. COMPSCI 270 (Fall 2008): Artificial Intelligence. COMPSCI 196/296.2 (Spring 2008): Linear and Integer Programming. COMPSCI 196.2 (Fall 2007): Introduction to Computational Economics. COMPSCI 296.3 (Spring 2007): Topics in Computational Economics. COMPSCI 296.2 (Fall 2006): Computational Game Theory and Mechanism Design.}\PY{l+s+s2}{\PYZdq{}}
-         
-         \PY{c+c1}{\PYZsh{}\PYZsh{} Buscamos los números que acompañan la palabra COMPSCI }
-         
-         \PY{c+c1}{\PYZsh{}\PYZsh{} Observemos que hay dos clases de codigo: el primero un numero normal y el segundo se puede ver de esta forma: 290.4/590.4}
-         
-         \PY{c+c1}{\PYZsh{}\PYZsh{} Codigos tipo 1}
-         \PY{n}{codigo\PYZus{}tipo1}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ (}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+) }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob2}\PY{p}{)} 
-         
-         \PY{c+c1}{\PYZsh{}\PYZsh{} Codigos tipo 2}
-         \PY{n}{codigo\PYZus{}tipo2}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{findall}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ (}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+/}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+) }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{ob2}\PY{p}{)}
-         \PY{c+c1}{\PYZsh{}\PYZsh{} Supongo que los codigos tipo 2 son dos clases diferentes y por ende debo separarlos}
-         \PY{n}{nuevo\PYZus{}codigo}\PY{o}{=}\PY{p}{[}\PY{p}{]}
-         
-         \PY{k}{for} \PY{n}{cod} \PY{o+ow}{in} \PY{n}{codigo\PYZus{}tipo2}\PY{p}{:}
-             \PY{n}{tupla}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d)/(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cod}\PY{p}{)}\PY{o}{.}\PY{n}{groups}\PY{p}{(}\PY{p}{)}
-             \PY{c+c1}{\PYZsh{} agregamos ambos codigos}
-             \PY{n}{nuevo\PYZus{}codigo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tupla}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-             \PY{n}{nuevo\PYZus{}codigo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tupla}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
-             
-         \PY{n}{total}\PY{o}{=}\PY{n}{codigo\PYZus{}tipo1}\PY{o}{+}\PY{n}{nuevo\PYZus{}codigo}
-         
-         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Códigos:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{total}\PY{p}{)}
-         \PY{c+c1}{\PYZsh{}Cod=re.findall(\PYZsq{}/ (\PYZbs{}d+.\PYZbs{}d+)\PYZsq{},ob2) }
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Guardamos ob2 \PYZsh{}\PYZsh{}}
+        \PY{n}{ob2} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{COMPSCI 270 (Spring 2019): Introduction to Artificial Intelligence. COMPSCI 590.2 (Fall 2018): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 223 (Spring 2018): Computational Microeconomics. COMPSCI 570 (Fall 2017): Artificial Intelligence. COMPSCI 590.3 (Fall 2017) / 590.1 (Spring 2018): Ethics and AI. COMPSCI 590.2 (Spring 2017): Computation, Information, and Learning in Market Design. COMPSCI 590.4 (Spring 2016): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 290.4/590.4 (Spring 2015): Crowdsourcing Societal Tradeoffs. COMPSCI 570 (Fall 2014): Artificial Intelligence. COMPSCI 590.4 (Spring 2014): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 590.1 (Fall 2012): Linear and Integer Programming. COMPSCI 173 (Spring 2012): Computational Microeconomics. COMPSCI 296.1 (Fall 2011): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 296.1 (Fall 2010): Linear and Integer Programming. COMPSCI 173 (Spring 2010): Computational Microeconomics. COMPSCI 196.1/296.1 (Fall 2009): Computational Microeconomics: Game Theory, Social Choice, and Mechanism Design. COMPSCI 170 (Spring 2009): Introduction to Artificial Intelligence. COMPSCI 270 (Fall 2008): Artificial Intelligence. COMPSCI 196/296.2 (Spring 2008): Linear and Integer Programming. COMPSCI 196.2 (Fall 2007): Introduction to Computational Economics. COMPSCI 296.3 (Spring 2007): Topics in Computational Economics. COMPSCI 296.2 (Fall 2006): Computational Game Theory and Mechanism Design.}\PY{l+s+s2}{\PYZdq{}}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Codigos: ['270', '590.2', '223', '570', '590.3', '590.1', '590.2', '590.4', '570', '590.4', '590.1', '173', '296.1', '296.1', '173', '170', '270', '196.2', '296.3', '296.2', '290.4', '590.4', '196.1', '296.1', '196', '296.2']
+{\color{incolor}In [{\color{incolor}101}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Buscamos los números que acompañan la palabra COMPSCI }
+          
+          \PY{c+c1}{\PYZsh{}\PYZsh{} Observemos que hay dos clases de codigo: el primero un numero}
+          \PY{c+c1}{\PYZsh{}normal y el segundo se puede ver de esta forma: 290.4/590.4}
+          
+          
+          \PY{c+c1}{\PYZsh{}\PYZsh{} Supongo que los codigos tipo 2 son dos clases diferentes y por ende debo separarlos}
+          \PY{n}{nuevo\PYZus{}codigo}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+          
+          \PY{k}{for} \PY{n}{cod} \PY{o+ow}{in} \PY{n}{codigo\PYZus{}tipo2}\PY{p}{:}
+              \PY{n}{tupla}\PY{o}{=}\PY{n}{re}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d)/(}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d+.}\PY{l+s+s1}{\PYZbs{}}\PY{l+s+s1}{d)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{cod}\PY{p}{)}\PY{o}{.}\PY{n}{groups}\PY{p}{(}\PY{p}{)}
+              \PY{c+c1}{\PYZsh{} agregamos ambos codigos}
+              \PY{n}{nuevo\PYZus{}codigo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tupla}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+              \PY{n}{nuevo\PYZus{}codigo}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tupla}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+              
+          \PY{n}{total}\PY{o}{=}\PY{n}{codigo\PYZus{}tipo1}\PY{o}{+}\PY{n}{nuevo\PYZus{}codigo}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Códigos:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{total}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}Cod=re.findall(\PYZsq{}/ (\PYZbs{}d+.\PYZbs{}d+)\PYZsq{},ob2) }
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Códigos: ['270', '590.2', '223', '570', '590.3', '590.1', '590.2', '590.4', '570', '590.4', '590.1', '173', '296.1', '296.1', '173', '170', '270', '196.2', '296.3', '296.2', '290.4', '590.4', '196.1', '296.1', '196', '296.2']
 
     \end{Verbatim}
 
