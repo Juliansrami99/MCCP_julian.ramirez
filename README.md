@@ -13,5 +13,11 @@ Transmilenio esta en el top 3 de los medios de transporte que mas usan los bogot
 
 ![alt tag](https://github.com/Juliansrami99/MCCP_julian.ramirez/blob/master/Proyecto/Imagenes/output_23_1.png)
 
-Sin embargo, su mal funcionamiento a llevado a diferentes incorfomidades por parte de los ciudadanos, por tal motivo es pertinente crear una política que permite hacer del sistema uno más eficiente. 
+Sin embargo, su mal funcionamiento ha llevado a diferentes incorfomidades por parte de los ciudadanos, por tal motivo es pertinente crear una política que permita hacer del sistema uno más eficiente. 
+
+### Metodología
+1. Entender el funcionamiento de un grafo dirigido y no dirigido. Identificar diferentes propiedades de los grafos
+2. Encuesta de Movilidad del 2015.
+    - Visualización de mapas.
+3. Aplicación de algoritmo: Ford-Fulkerson
 
