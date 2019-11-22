@@ -8,6 +8,7 @@ Este proyecto tiene como objetivo implementar la teoría de grafos como herramie
 
 
 ### Motivación
-https://github.com/Juliansrami99/MCCP_julian.ramirez/blob/master/Proyecto/Imagenes/output_23_1.png
+![alt tag](https://github.com/Juliansrami99/MCCP_julian.ramirez/blob/master/Proyecto/Imagenes/output_23_1.png)
+
 
 
