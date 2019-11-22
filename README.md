@@ -27,8 +27,9 @@ Se quiere ver que tan necesario es crear nuevas estaciones de transmilenio, por 
 ![alt tag](https://github.com/Juliansrami99/MCCP_julian.ramirez/blob/master/Proyecto/Imagenes/output_17_0.png)
 
 ### Algunas librerías usadas:
-- Folium
-- Networ
+- networkx 
+- folium 
+- webbrowser
 
 
 ### Algunas cosas encontradas
