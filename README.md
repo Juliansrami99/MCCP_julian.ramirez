@@ -26,12 +26,31 @@ Se quiere ver que tan necesario es crear nuevas estaciones de transmilenio, por 
 
 ![alt tag](https://github.com/Juliansrami99/MCCP_julian.ramirez/blob/master/Proyecto/Imagenes/output_17_0.png)
 
-### Librerías usadas:
+### Algunas librerías usadas:
+- Folium
+- Networ
+
 
 ### Algunas cosas encontradas
 
 Viajes mas frecuentados:
 
 ![alt tag](https://github.com/Juliansrami99/MCCP_julian.ramirez/blob/master/Proyecto/Imagenes/output_44_1.png)
+
+-Despues de aplicar el algoritmo se observó que se requieren más estaciones de transmilenio, para el sector estudiado.
+
+-Es necesario mejorar la eficiencia de llegada de transmilenios a una estación
+
+### Carpetas
+
+##### Imagenes
+
+Algunas imagenes obtenidas
+
+##### Datos
+
+Encuesta de movilidad del 2015
+
+
 
 
